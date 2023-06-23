@@ -25,6 +25,7 @@ const Home = (props) => {
     return (countries && countries.length > 0 ?
         <>
             <div className="Home">
+                <h1>PESQUISAR POR PAÍS/CAPITAL?</h1>
                 <h1>Todos os países cadastrados:</h1>
                 <Link to="/home/new"><button>Cadastrar novo país</button></Link>
                 <Routes>

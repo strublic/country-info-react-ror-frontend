@@ -52,10 +52,13 @@ const Form = (props) => {
         <>
             <div className="form">
                 <form>
-                    <input type="text" name="name" value={formData.name} onChange={handleChange}/>
+                    <input type="text" name="name" value={formData.name} onChange={handleChange} placeholder="Nome do país"/>
+                    <input type="text" name="capital_city" value={formData.capital_city} onChange={handleChange} placeholder="Capital do país"/>
+                    <textarea name="desc" value={formData.desc} onChange={handleChange} placeholder="Descrição sobre o país"/>
+                    <label>Área total do país:</label>
                     <input type="text" name="area_total" value={formData.area_total} onChange={handleChange}/>
+                    <label>Qtd. populacional do país:</label>
                     <input type="text" name="population_size" value={formData.population_size} onChange={handleChange}/>
-                    <input type="text" name="capital_city" value={formData.capital_city} onChange={handleChange}/>
                     <input type="submit" value={action === "new" ? "Criar" : "Atualizar"} onClick={handleSubmit}/>
                 </form>
             </div>

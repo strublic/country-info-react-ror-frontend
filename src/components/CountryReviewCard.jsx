@@ -41,7 +41,7 @@ export default function CountryReviewCard(props) {
 
   return (
     <Grid item  margin={2} xs={12} md={6} lg={9}>
-      <Card>
+      <Card sx={{width: 350}}>
         <CardHeader
           avatar={
             <Avatar sx={{ bgcolor: randomBgColor }} aria-label="country">
@@ -67,7 +67,7 @@ export default function CountryReviewCard(props) {
         />
         <CardContent>
           <Typography variant="body2" color="text.secondary">
-            Poderia ter uma descrição breve sobre o país
+            {props.country.desc}
           </Typography>
         </CardContent>
         <Popover
@@ -80,11 +80,13 @@ export default function CountryReviewCard(props) {
               horizontal: 'left',
             }}
           >
-          <Typography>País: {props.country.name}</Typography>
-          <Typography>Capital: {props.country.capital_city}</Typography>
-          <Typography>Área: {props.country.area_total}</Typography>
-          <Typography>População: {props.country.population_size}</Typography>
-          <Typography>Densidade demográfica: Á enviar </Typography>
+            <div style={{margin: 20}}>
+              <Typography>País: {props.country.name}</Typography>
+              <Typography>Capital: {props.country.capital_city}</Typography>
+              <Typography>Área: {props.country.area_total}</Typography>
+              <Typography>População: {props.country.population_size}</Typography>
+              <Typography>Densidade demográfica: {props.country.density} hab/km²</Typography>
+            </div>
         </Popover>
       </Card>
     </Grid>
