@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { styled } from '@mui/material/styles';
 import Card from '@mui/material/Card';
 import CardHeader from '@mui/material/CardHeader';
 import CardContent from '@mui/material/CardContent';
@@ -7,7 +6,6 @@ import Avatar from '@mui/material/Avatar';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import { red, blue, orange, green, yellow } from '@mui/material/colors';
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { Grid, Popover, Tooltip } from '@mui/material';
 import Settings from '@mui/icons-material/Settings';
 import LoupeIcon from '@mui/icons-material/Loupe';
@@ -28,6 +26,7 @@ export default function CountryReviewCard(props) {
     yellow[200],
     red[200],
     green[200],
+    orange[400],
     blue[500],
     yellow[500],
     red[500],
