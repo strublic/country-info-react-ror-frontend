@@ -9,8 +9,6 @@ const Form = (props) => {
     const action = useParams().action;
     const [formData, setFormData] = useState(state[action]);
 
-    console.log("HEEEEERE 2222")
-
     const actions = {
         new: () => {
             console.log ("AC: ", actions)

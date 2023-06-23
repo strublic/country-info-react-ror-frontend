@@ -1,16 +1,16 @@
 import * as React from 'react';
-import Card from '@mui/material/Card';
-import CardHeader from '@mui/material/CardHeader';
-import CardContent from '@mui/material/CardContent';
-import Avatar from '@mui/material/Avatar';
-import IconButton from '@mui/material/IconButton';
-import Typography from '@mui/material/Typography';
+import { useNavigate } from 'react-router-dom';
+import { Grid, Popover, Tooltip, IconButton, Card, CardHeader, CardContent, Avatar, Typography } from '@mui/material';
 import { red, blue, orange, green, yellow } from '@mui/material/colors';
-import { Grid, Popover, Tooltip } from '@mui/material';
-import Settings from '@mui/icons-material/Settings';
 import LoupeIcon from '@mui/icons-material/Loupe';
+import DeleteForever from '@mui/icons-material/DeleteForever';
+import EditIcon from '@mui/icons-material/Edit';
+import { useAppState } from '../AppState';
 
 export default function CountryReviewCard(props) {
+  const navigate = useNavigate();
+  const {state, dispatch} = useAppState()
+
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
 
@@ -56,8 +56,23 @@ export default function CountryReviewCard(props) {
                 </IconButton>
               </Tooltip>
               <Tooltip title="Editar">
-                <IconButton>
-                  <Settings fontSize="small" />
+                <IconButton onClick={() => {
+                  dispatch({type: "select", payload: props.country})
+                  navigate("/home/edit")
+                }}>
+                  <EditIcon fontSize="small" />
+                </IconButton>
+              </Tooltip>
+              <Tooltip title="Deletar">
+                <IconButton onClick={() => {
+                  fetch(state.url + "/countries/" + props.country.id, {
+                    method: "delete",
+                    headers: {
+                      Authorization: "bearer " + state.token
+                    }
+                  }).then(() => {props.countries.getCountries()});
+                }}>
+                  <DeleteForever fontSize="small" />
                 </IconButton>
               </Tooltip>
             </>

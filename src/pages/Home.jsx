@@ -36,7 +36,7 @@ const Home = (props) => {
                 <Grid container margin={1}>
                     {countries.map(country => (
                         <div className="country" key={country.id}>
-                            <CountryReviewCard country={country}/>
+                            <CountryReviewCard country={country} countries={{getCountries}}/>
                         </div>
                         )
                     )}
