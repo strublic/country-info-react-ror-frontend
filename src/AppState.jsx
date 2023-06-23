@@ -9,18 +9,18 @@ const initialState = {
     countries: null,
     new:{
         name: "",
+        capital_city: "",
         area_total: 0,
         population_size: 0,
-        //demografico
-        capital_city: "",
+        density: 0,
     },
-    update:{
+    edit:{
         id: 0,
         name: "",
+        capital_city: "",
         area_total: 0,
         population_size: 0,
-        //demografico
-        capital_city: "",
+        density: 0,
     }
 }
 
@@ -39,6 +39,9 @@ const reducer = (state, action) => {
             return newState;
         case "getCountries":
             newState = {...state, countries: action.payload};
+            return newState;
+        case "select":
+            newState = {...state, edit: action.payload};
             return newState;
         default:
             return state;
