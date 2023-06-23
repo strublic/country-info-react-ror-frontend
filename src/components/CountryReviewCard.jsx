@@ -2,111 +2,92 @@ import * as React from 'react';
 import { styled } from '@mui/material/styles';
 import Card from '@mui/material/Card';
 import CardHeader from '@mui/material/CardHeader';
-import CardMedia from '@mui/material/CardMedia';
 import CardContent from '@mui/material/CardContent';
-import CardActions from '@mui/material/CardActions';
-import Collapse from '@mui/material/Collapse';
 import Avatar from '@mui/material/Avatar';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
-import { red } from '@mui/material/colors';
-import FavoriteIcon from '@mui/icons-material/Favorite';
-import ShareIcon from '@mui/icons-material/Share';
+import { red, blue, orange, green, yellow } from '@mui/material/colors';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import MoreVertIcon from '@mui/icons-material/MoreVert';
+import { Grid, Popover, Tooltip } from '@mui/material';
+import Settings from '@mui/icons-material/Settings';
+import LoupeIcon from '@mui/icons-material/Loupe';
 
-const ExpandMore = styled((props) => {
-  const { expand, ...other } = props;
-  return <IconButton {...other} />;
-})(({ theme, expand }) => ({
-  transform: !expand ? 'rotate(0deg)' : 'rotate(180deg)',
-  marginLeft: 'auto',
-  transition: theme.transitions.create('transform', {
-    duration: theme.transitions.duration.shortest,
-  }),
-}));
+export default function CountryReviewCard(props) {
+  const [anchorEl, setAnchorEl] = React.useState(null);
+  const open = Boolean(anchorEl);
 
-export default function CountryReviewCard() {
-  const [expanded, setExpanded] = React.useState(false);
-
-  const handleExpandClick = () => {
-    setExpanded(!expanded);
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+  const handleClose = () => {
+    setAnchorEl(null);
   };
 
+  const profileColor = [
+    blue[200],
+    yellow[200],
+    red[200],
+    green[200],
+    blue[500],
+    yellow[500],
+    red[500],
+    green[500],
+  ]
+
+  function randomNumber(max) {
+    return Math.floor(Math.random() * max);
+  }
+
+  const randomBgColor = ( profileColor[randomNumber(profileColor.length)]);
+
   return (
-    <Card sx={{ maxWidth: 345 }}>
-      <CardHeader
-        avatar={
-          <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
-            R
-          </Avatar>
-        }
-        action={
-          <IconButton aria-label="settings">
-            <MoreVertIcon />
-          </IconButton>
-        }
-        title="Shrimp and Chorizo Paella"
-        subheader="September 14, 2016"
-      />
-      <CardMedia
-        component="img"
-        height="194"
-        image="/static/images/cards/paella.jpg"
-        alt="Paella dish"
-      />
-      <CardContent>
-        <Typography variant="body2" color="text.secondary">
-          This impressive paella is a perfect party dish and a fun meal to cook
-          together with your guests. Add 1 cup of frozen peas along with the mussels,
-          if you like.
-        </Typography>
-      </CardContent>
-      <CardActions disableSpacing>
-        <IconButton aria-label="add to favorites">
-          <FavoriteIcon />
-        </IconButton>
-        <IconButton aria-label="share">
-          <ShareIcon />
-        </IconButton>
-        <ExpandMore
-          expand={expanded}
-          onClick={handleExpandClick}
-          aria-expanded={expanded}
-          aria-label="show more"
-        >
-          <ExpandMoreIcon />
-        </ExpandMore>
-      </CardActions>
-      <Collapse in={expanded} timeout="auto" unmountOnExit>
+    <Grid item  margin={2} xs={12} md={6} lg={9}>
+      <Card>
+        <CardHeader
+          avatar={
+            <Avatar sx={{ bgcolor: randomBgColor }} aria-label="country">
+              {props.country.name.charAt(0)}
+            </Avatar>
+          }
+          action={
+            <>
+              <Tooltip title="Ver detalhes">
+                <IconButton aria-describedby={props.country.id} variant="contained" onClick={handleClick}>
+                  <LoupeIcon fontSize="small"/>
+                </IconButton>
+              </Tooltip>
+              <Tooltip title="Editar">
+                <IconButton>
+                  <Settings fontSize="small" />
+                </IconButton>
+              </Tooltip>
+            </>
+          }
+          title={props.country.name}
+          subheader={props.country.capital_city}
+        />
         <CardContent>
-          <Typography paragraph>Method:</Typography>
-          <Typography paragraph>
-            Heat 1/2 cup of the broth in a pot until simmering, add saffron and set
-            aside for 10 minutes.
-          </Typography>
-          <Typography paragraph>
-            Heat oil in a (14- to 16-inch) paella pan or a large, deep skillet over
-            medium-high heat. Add chicken, shrimp and chorizo, and cook, stirring
-            occasionally until lightly browned, 6 to 8 minutes. Transfer shrimp to a
-            large plate and set aside, leaving chicken and chorizo in the pan. Add
-            pimentón, bay leaves, garlic, tomatoes, onion, salt and pepper, and cook,
-            stirring often until thickened and fragrant, about 10 minutes. Add
-            saffron broth and remaining 4 1/2 cups chicken broth; bring to a boil.
-          </Typography>
-          <Typography paragraph>
-            Add rice and stir very gently to distribute. Top with artichokes and
-            peppers, and cook without stirring, until most of the liquid is absorbed,
-            15 to 18 minutes. Reduce heat to medium-low, add reserved shrimp and
-            mussels, tucking them down into the rice, and cook again without
-            stirring, until mussels have opened and rice is just tender, 5 to 7
-            minutes more. (Discard any mussels that don&apos;t open.)
-          </Typography>
-          <Typography>
-            Set aside off of the heat to let rest for 10 minutes, and then serve.
+          <Typography variant="body2" color="text.secondary">
+            Poderia ter uma descrição breve sobre o país
           </Typography>
         </CardContent>
-      </Collapse>
-    </Card>
+        <Popover
+            id={props.country.id}
+            open={open}
+            anchorEl={anchorEl}
+            onClose={handleClose}
+            anchorOrigin={{
+              vertical: 'bottom',
+              horizontal: 'left',
+            }}
+          >
+          <Typography>País: {props.country.name}</Typography>
+          <Typography>Capital: {props.country.capital_city}</Typography>
+          <Typography>Área: {props.country.area_total}</Typography>
+          <Typography>População: {props.country.population_size}</Typography>
+          <Typography>Densidade demográfica: Á enviar </Typography>
+        </Popover>
+      </Card>
+    </Grid>
   );
 }
