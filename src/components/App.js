@@ -4,9 +4,10 @@ import Nav from "./Nav.jsx";
 import Home from "../pages/Home.jsx";
 import Auth from "../pages/Auth.jsx";
 import Dashboard from "../pages/Dashboard.jsx";
+import Form from "../components/Form"
 import { useAppState } from "../AppState.jsx";
 
-export const App = (props) => {
+const App = (props) => {
   const {state, dispatch } = useAppState();
   const navigate = useNavigate();
 
@@ -15,7 +16,7 @@ export const App = (props) => {
     console.log("auth: ", auth)
     if (auth){
       dispatch({ type: "auth", payload: auth});
-      navigate("/dashboard");
+      navigate("/dashboard/");
     }else{
       navigate("/");
     }
@@ -24,10 +25,11 @@ export const App = (props) => {
   return(
     <>
       <Routes>
-        <Route path='/' element={<Nav/>}/>
-        <Route path='/' element={<Home/>}/>
+        {/* <Route path='/' element={<Nav/>}/> */}
+        { state.token? <Route path='/' element={<Home/>}/> : null }
+        { state.token? <Route path='/dashboard' element={<Dashboard/>}/> : null }
+        { state.token? <Route path="/home/:action"  element={<Form/>}/> : null }
         <Route path='/auth/:form' element={<Auth/>}/>
-        <Route path='/dashboard' element={<Dashboard/>}/>
       </Routes>
     </>
   )

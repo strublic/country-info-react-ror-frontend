@@ -3,15 +3,17 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './components/App';
 import reportWebVitals from './reportWebVitals';
-import {BrowserRouter as Router} from "react-router-dom";
+import {BrowserRouter} from "react-router-dom";
 import { AppState } from "./AppState.jsx";
+import Nav from './components/Nav';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <AppState>
-    <Router>
+    <BrowserRouter>
+        <Nav />
         <App/>
-    </Router>
+    </BrowserRouter>
   </AppState>
 );
 

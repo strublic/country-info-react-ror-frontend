@@ -1,11 +1,27 @@
-import React, {useReducer} from "react"
+import React, {useReducer, createContext, useContext} from "react"
 
 // INITIAL STATE
 
 const initialState = {
     url: "http://localhost:3000/",
     token: null,
-    username: null
+    username: null,
+    countries: null,
+    new:{
+        name: "",
+        area_total: 0,
+        population_size: 0,
+        //demografico
+        capital_city: "",
+    },
+    update:{
+        id: 0,
+        name: "",
+        area_total: 0,
+        population_size: 0,
+        //demografico
+        capital_city: "",
+    }
 }
 
 ////////////////
@@ -13,7 +29,6 @@ const initialState = {
 
 const reducer = (state, action) => {
     let newState;
-    console.log(action)
     switch(action.type){
         case "auth":
             newState = { ...state, ...action.payload };
@@ -21,6 +36,9 @@ const reducer = (state, action) => {
         case "logout":
             newState = {...state, token: null, username: null}
             window.localStorage.removeItem("auth");
+            return newState;
+        case "getCountries":
+            newState = {...state, countries: action.payload};
             return newState;
         default:
             return state;
@@ -30,7 +48,7 @@ const reducer = (state, action) => {
 ///////
 //AppContext
 /////
-const AppContext = React.createContext(null)
+const AppContext = createContext(null)
 
 export const AppState = (props) => {
     const [state, dispatch] = useReducer(reducer, initialState)
@@ -44,5 +62,5 @@ export const AppState = (props) => {
 /// useAppState hook
 ////////
 export const useAppState = () => {
-    return React.useContext(AppContext)
+    return useContext(AppContext)
 }

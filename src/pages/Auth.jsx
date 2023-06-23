@@ -4,15 +4,12 @@ import { useAppState } from "../AppState";
 
 const Auth = (props) => {
     const type = useParams().form;
-    console.log("type: ", type)
     const [formData, setFormData] = useState({
         username: "",
         password: "",
     })
     const [userData, setUserData] = useState();
     const {state, dispatch} = useAppState();
-
-    console.log("state: ", state)
     const navigate = useNavigate()
 
     useEffect(() => {
@@ -20,7 +17,7 @@ const Auth = (props) => {
             const {token, user } = userData;
             dispatch ({type: "auth", payload: {token, username: user.username}});
             window.localStorage.setItem("auth", JSON.stringify({token, username: user.username}))
-            navigate("/dashboard")
+            navigate("/")
         }
     }, [userData])
     
