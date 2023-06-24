@@ -38,9 +38,7 @@ const Form = (props) => {
     }
     const handleSubmit = (event) => {
         event.preventDefault();
-        actions[action]().then((data) => {
-            // props.getCountries()
-        });
+        actions[action]();
         window.location.href = "/"
     }
     

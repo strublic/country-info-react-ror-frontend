@@ -4,8 +4,12 @@ import { Route, Link, Routes } from "react-router-dom";
 import Form from "../components/Form";
 import CountryReviewCard from "../components/CountryReviewCard";
 import { Grid } from "@mui/material";
+import SearchAPI from "../components/SearchAPI";
+import SearchFrontend from "../components/SearchFrontend";
+import { AddCountry } from "../components/Button";
+import GridList from "../components/GridList";
 
-const Home = (props) => {
+const Home = () => {
   const { state, dispatch } = useAppState();
   const { url, countries } = state;
   const { token } = JSON.parse(window.localStorage.getItem("auth"));
@@ -18,8 +22,8 @@ const Home = (props) => {
         Authorization: "bearer " + token,
       },
     });
-    const countries = await response.json();
-    dispatch({ type: "getCountries", payload: countries });
+    const countriesPayload = await response.json();
+    dispatch({ type: "getCountries", payload: countriesPayload });
   };
 
   useEffect(() => {
@@ -41,48 +45,13 @@ const Home = (props) => {
     setSearchField(e.target.value);
   };
 
-  const searchInput = () => (
-    <>
-      <input
-        className="pa3 bb br3 grow b--none bg-lightest-blue ma3"
-        type="search"
-        placeholder="Pesquisar por país ou capital"
-        onChange={handleChange}
-      />
-    </>
-  );
-
-  const addCountryButton = () => (
-    <>
-      <Link to="/home/new">
-        <button>Cadastrar novo país</button>
-      </Link>
-      <Routes>
-        <Route path="/home/:action" element={<Form />} />
-      </Routes>
-    </>
-  );
-
-  const gridListOfCountries = () => (
-    <>
-      <Grid container margin={1}>
-        {filteredCountries.map((country) => (
-          <div className="country" key={country.id}>
-            <CountryReviewCard country={country} countries={{ getCountries }} />
-          </div>
-        ))}
-      </Grid>
-    </>
-  );
-
   const homeBody = () => (
     <>
       <div className="Home">
-        <h1>PESQUISAR POR PAÍS/CAPITAL:</h1>
-        {searchInput()}
-        <h1>Todos os países cadastrados:</h1>
-        {addCountryButton()}
-        {gridListOfCountries()}
+        <SearchFrontend handleChange={handleChange} />
+        <SearchAPI />
+        <AddCountry />
+        <GridList filteredCountries={filteredCountries} />
       </div>
     </>
   );
