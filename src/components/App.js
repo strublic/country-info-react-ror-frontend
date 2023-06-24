@@ -13,7 +13,6 @@ const App = (props) => {
 
   useState(() => {
     const auth = JSON.parse(window.localStorage.getItem("auth"));
-    console.log("auth: ", auth)
     if (auth){
       dispatch({ type: "auth", payload: auth});
       navigate("/dashboard/");

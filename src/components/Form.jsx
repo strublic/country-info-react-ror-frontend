@@ -11,7 +11,6 @@ const Form = (props) => {
 
     const actions = {
         new: () => {
-            console.log ("AC: ", actions)
             return fetch(state.url + "/countries", {
                 method: "post",
                 headers: {
@@ -41,7 +40,6 @@ const Form = (props) => {
         event.preventDefault();
         actions[action]().then((data) => {
             // props.getCountries()
-            console.log("DATA: ", data)
         });
         window.location.href = "/"
     }
