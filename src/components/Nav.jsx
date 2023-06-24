@@ -6,36 +6,32 @@ const Nav = (props) => {
   const { state, dispatch } = useAppState();
   const navigate = useNavigate();
 
-  function isLoggedIn() {
-    return (
-      <>
-        <Link to="/">
-          <div>Home</div>
-        </Link>
-        <div
-          onClick={() => {
-            dispatch({ type: "logout" });
-            navigate("/");
-          }}
-        >
-          Logout
-        </div>
-      </>
-    );
-  }
+  const isLoggedIn = () => (
+    <>
+      <Link to="/">
+        <div>Home</div>
+      </Link>
+      <div
+        onClick={() => {
+          dispatch({ type: "logout" });
+          navigate("/");
+        }}
+      >
+        Logout
+      </div>
+    </>
+  );
 
-  function isLoggedOut() {
-    return (
-      <>
-        <Link to="/auth/signup">
-          <div>SignUp</div>
-        </Link>
-        <Link to="/auth/login">
-          <div>Login</div>
-        </Link>
-      </>
-    );
-  }
+  const isLoggedOut = () => (
+    <>
+      <Link to="/auth/signup">
+        <div>SignUp</div>
+      </Link>
+      <Link to="/auth/login">
+        <div>Login</div>
+      </Link>
+    </>
+  );
 
   return (
     <header>
