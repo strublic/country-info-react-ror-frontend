@@ -25,7 +25,6 @@ const App = (props) => {
   return(
     <>
       <Routes>
-        {/* <Route path='/' element={<Nav/>}/> */}
         { state.token? <Route path='/' element={<Home/>}/> : null }
         { state.token? <Route path='/dashboard' element={<Dashboard/>}/> : null }
         { state.token? <Route path="/home/:action"  element={<Form/>}/> : null }
