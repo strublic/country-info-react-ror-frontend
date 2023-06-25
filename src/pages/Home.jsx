@@ -1,9 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { useAppState } from "../AppState";
-import { Route, Link, Routes } from "react-router-dom";
-import Form from "../components/Form";
-import CountryReviewCard from "../components/CountryReviewCard";
-import { Grid } from "@mui/material";
 import SearchAPI from "../components/SearchAPI";
 import SearchFrontend from "../components/SearchFrontend";
 import { AddCountry } from "../components/Button";
@@ -48,19 +44,24 @@ const Home = () => {
   const homeBody = () => (
     <>
       <div className="Home">
-        <SearchFrontend handleChange={handleChange} />
-        <SearchAPI />
         <AddCountry />
-        <GridList filteredCountries={filteredCountries} />
+        {countries.length > 0 ? (
+          <>
+            <SearchFrontend handleChange={handleChange} />
+            <SearchAPI />
+            <GridList
+              filteredCountries={filteredCountries}
+              getCountries={getCountries}
+            />
+          </>
+        ) : (
+          <h1>Não há países cadastrados!</h1>
+        )}
       </div>
     </>
   );
 
-  return countries.length > 0 ? (
-    homeBody()
-  ) : (
-    <h1>Não há países cadastrados!</h1>
-  );
+  return homeBody();
 };
 
 export default Home;
