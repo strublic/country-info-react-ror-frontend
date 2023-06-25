@@ -88,7 +88,7 @@ const CountryReviewCard = (props) => {
               Authorization: "bearer " + state.token,
             },
           }).then(() => {
-            props.countries.getCountries();
+            props.getCountries();
           });
         }}
       >
@@ -125,7 +125,7 @@ const CountryReviewCard = (props) => {
       <div style={{ margin: 20 }}>
         <Typography>País: {props.country.name}</Typography>
         <Typography>Capital: {props.country.capital_city}</Typography>
-        <Typography>Área: {props.country.area_total}</Typography>
+        <Typography>Área: {props.country.area_total} km²</Typography>
         <Typography>População: {props.country.population_size}</Typography>
         <Typography>
           Densidade demográfica: {props.country.density} hab/km²
@@ -152,6 +152,6 @@ const CountryReviewCard = (props) => {
   );
 
   return gridItemCard();
-}
+};
 
-export default CountryReviewCard 
+export default CountryReviewCard;
