@@ -10,7 +10,10 @@ function GridList(props) {
       <Grid container margin={1}>
         {props.filteredCountries.map((country) => (
           <div className="country" key={country.id}>
-            <CountryReviewCard country={country} />
+            <CountryReviewCard
+              country={country}
+              getCountries={props.getCountries}
+            />
           </div>
         ))}
       </Grid>
