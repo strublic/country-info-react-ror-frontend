@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import {Routes, Route, useNavigate} from "react-router-dom";
+import React, { Fragment, useState } from "react";
+import {Routes, Route, useNavigate, BrowserRouter} from "react-router-dom";
 import Nav from "./Nav.jsx";
 import Home from "../pages/Home.jsx";
 import Auth from "../pages/Auth.jsx";
@@ -24,9 +24,9 @@ const App = (props) => {
   return(
     <>
       <Routes>
-        { state.token? <Route path='/' element={<Home/>}/> : null }
-        { state.token? <Route path='/dashboard' element={<Dashboard/>}/> : null }
-        { state.token? <Route path="/home/:action"  element={<Form/>}/> : null }
+        { state.token && <Route path='/' element={<Home/>}/> }
+        { state.token && <Route path='/dashboard' element={<Dashboard/>}/> }
+        { state.token && <Route path="/home/:action"  element={<Form/>}/> }
         <Route path='/auth/:form' element={<Auth/>}/>
       </Routes>
     </>
