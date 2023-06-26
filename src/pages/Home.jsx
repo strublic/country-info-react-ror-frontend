@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { useAppState } from "../AppState";
 import SearchAPI from "../components/SearchAPI";
 import SearchFrontend from "../components/SearchFrontend";
-import { AddCountry } from "../components/Button";
 import GridList from "../components/GridList";
 
 const Home = () => {

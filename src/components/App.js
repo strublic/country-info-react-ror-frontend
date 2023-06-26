@@ -1,6 +1,5 @@
 import React, { Fragment, useState } from "react";
-import {Routes, Route, useNavigate, BrowserRouter} from "react-router-dom";
-import Nav from "./Nav.jsx";
+import {Routes, Route, useNavigate} from "react-router-dom";
 import Home from "../pages/Home.jsx";
 import Auth from "../pages/Auth.jsx";
 import Dashboard from "../pages/Dashboard.jsx";
