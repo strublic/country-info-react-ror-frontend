@@ -3,7 +3,7 @@ import React, {useReducer, createContext, useContext} from "react"
 // INITIAL STATE
 
 const initialState = {
-    url: "http://localhost:3000/",
+    url: "https://pickcountry-7d33a6ae91f5.herokuapp.com/",
     token: null,
     username: null,
     countries: null,
