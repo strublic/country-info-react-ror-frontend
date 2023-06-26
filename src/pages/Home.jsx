@@ -43,16 +43,20 @@ const Home = () => {
 
   const homeBody = () => (
     <>
-      <div className="Home">
-        <AddCountry />
+      <div>
         {countries.length > 0 ? (
           <>
-            <SearchFrontend handleChange={handleChange} />
-            <SearchAPI />
-            <GridList
-              filteredCountries={filteredCountries}
-              getCountries={getCountries}
-            />
+            <div className="content-box search-box">
+              <h2>Pesquisar por país/capital</h2>
+              <SearchFrontend handleChange={handleChange} />
+              <SearchAPI />
+            </div>
+            <div className="content-box">
+              <GridList
+                filteredCountries={filteredCountries}
+                getCountries={getCountries}
+              />
+            </div>
           </>
         ) : (
           <h1>Não há países cadastrados!</h1>
