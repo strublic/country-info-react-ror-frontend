@@ -125,8 +125,8 @@ const CountryReviewCard = (props) => {
       <div style={{ margin: 20 }}>
         <Typography>País: {props.country.name}</Typography>
         <Typography>Capital: {props.country.capital_city}</Typography>
-        <Typography>Área: {props.country.area_total} km²</Typography>
         <Typography>População: {props.country.population_size}</Typography>
+        <Typography>Área: {props.country.area_total} km²</Typography>
         <Typography>
           Densidade demográfica: {props.country.density} hab/km²
         </Typography>

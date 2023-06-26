@@ -1,15 +1,22 @@
 import React from "react";
 
-const SearchFrontend = ({handleChange}) => {
+const SearchFrontend = ({ handleChange }) => {
   const searchInputFrontend = () => (
     <>
-      <h1>Front ggg: PESQUISAR POR PAÍS/CAPITAL</h1>
-      <input
-        className="pa3 bb br3 grow b--none bg-lightest-blue ma3"
-        type="search"
-        placeholder="Pesquisar por país ou capital"
-        onChange={handleChange}
-      />
+      <div className="form-search">
+        <div className="inner-form">
+          <h3>&nbsp;&nbsp;Frontend:</h3>
+          <div className="input-field second-wrap">
+            <input
+              className="input-search input-login-form"
+              type="search"
+              placeholder="Pesquisar por país/capital no frontend"
+              onChange={handleChange}
+              autoComplete="off"
+            />
+          </div>
+        </div>
+      </div>
     </>
   );
 

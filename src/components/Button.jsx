@@ -1,23 +1,19 @@
-import React from 'react'
-import { Link, Route, Routes } from 'react-router-dom';
-import Form from './Form';
+import React from "react";
+import { Link, Route, Routes } from "react-router-dom";
+import Form from "./Form";
+import AddIcon from "@mui/icons-material/Add";
 
 export const AddCountry = () => (
   <>
     <Link to="/home/new">
-      <button>Cadastrar novo país</button>
+      <AddIcon sx={{ fontSize: 30 }} />
+      <div>Cadastrar país</div>
     </Link>
-    <Routes>
-      <Route path="/home/:action" element={<Form />} />
-    </Routes>
   </>
 );
 
 function Button() {
-  
-  return (
-    <div>Button</div>
-  )
+  return <div>Button</div>;
 }
 
-export default Button
+export default Button;

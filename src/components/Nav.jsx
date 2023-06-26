@@ -1,44 +1,59 @@
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useAppState } from "../AppState";
+import HomeIcon from "@mui/icons-material/Home";
+import LogoutIcon from "@mui/icons-material/Logout";
+import { AddCountry } from "./Button";
+import VpnKeyIcon from '@mui/icons-material/VpnKey';
 
 const Nav = (props) => {
   const { state, dispatch } = useAppState();
   const navigate = useNavigate();
 
-  const isLoggedIn = () => (
+  const menu = () => (
     <>
-      <Link to="/">
-        <div>Home</div>
-      </Link>
-      <div
-        onClick={() => {
-          dispatch({ type: "logout" });
-          navigate("/");
-        }}
-      >
-        Logout
-      </div>
+      <header>
+        <div className="menu">
+          <ul>
+            <li className="active">
+              <a href="/">
+                <HomeIcon sx={{ fontSize: 30 }} />
+                <div>Project: Pick a Country</div>
+              </a>
+            </li>
+            {state.token ? (
+              <>
+                <li>
+                  <AddCountry />
+                </li>
+                <li className="active btn-logout">
+                  <Link
+                    to="/"
+                    onClick={() => {
+                      dispatch({ type: "logout" });
+                      navigate("/");
+                    }}
+                  >
+                    <LogoutIcon sx={{ fontSize: 48 }} />
+                  </Link>
+                </li>
+              </>
+            ) : (
+              <li className="active btn-login">
+                <Link
+                  to="/auth/login"
+                >
+                  <VpnKeyIcon sx={{ fontSize: 48 }} />
+                </Link>
+              </li>
+            )}
+          </ul>
+        </div>
+      </header>
     </>
   );
 
-  const isLoggedOut = () => (
-    <>
-      <Link to="/auth/signup">
-        <div>SignUp</div>
-      </Link>
-      <Link to="/auth/login">
-        <div>Login</div>
-      </Link>
-    </>
-  );
-
-  return (
-    <header>
-      <h1>Pick a Country</h1>
-      <nav>{state.token ? isLoggedIn() : isLoggedOut()}</nav>
-    </header>
-  );
+  return menu();
 };
 
 export default Nav;

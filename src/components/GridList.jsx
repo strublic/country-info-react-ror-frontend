@@ -5,8 +5,7 @@ import CountryReviewCard from "./CountryReviewCard";
 function GridList(props) {
   const gridListOfCountries = () => (
     <>
-      <h1>Todos os países cadastrados:</h1>
-
+      <h3>Listagem dos países cadastrados</h3>
       <Grid container margin={1}>
         {props.filteredCountries.map((country) => (
           <div className="country" key={country.id}>
