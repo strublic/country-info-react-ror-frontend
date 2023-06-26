@@ -5,7 +5,7 @@ import Form from "../components/Form";
 
 const Dashboard = (props) => {
   const { state, dispatch } = useAppState();
-  const { token, url, countries, type } = state;
+  const { token, url, countries } = state;
 
   const getCountries = async () => {
     const response = await fetch(url + "countries/", {
