@@ -5,7 +5,7 @@ import AddIcon from "@mui/icons-material/Add";
 export const AddCountry = () => (
   <>
     <Link to="/home/new">
-      <AddIcon sx={{ fontSize: 30 }} />
+      <AddIcon sx={{ fontSize: 48 }} />
       <div>Cadastrar país</div>
     </Link>
   </>
