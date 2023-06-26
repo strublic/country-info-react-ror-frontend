@@ -94,7 +94,7 @@ const Auth = (props) => {
           {type.includes("login") ? (
             <label>
               Não tem uma conta?
-              <Link to="/auth/logout" className="strong">
+              <Link to="/auth/signup" className="strong">
                 &nbsp;Registre-se
               </Link>
             </label>
